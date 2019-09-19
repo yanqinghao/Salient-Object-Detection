@@ -1,0 +1,4 @@
+suanpan[docker]==0.9.87
+tensorflow-gpu
+imageio
+pillow
