@@ -36,7 +36,7 @@ def SPDeepMatting(context):
             rgb = imageio.imread(rgb_pth)
             if rgb.shape[2] == 4:
                 rgb = rgba2rgb(rgb)
-            origin_shape = rgb.shape
+            origin_shape = rgb.shape[:2]
 
             rgb = np.expand_dims(
                 np.array(
