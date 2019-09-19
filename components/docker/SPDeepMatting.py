@@ -50,7 +50,7 @@ def SPDeepMatting(context):
             pred_alpha = sess.run(pred_mattes, feed_dict=feed_dict)
 
             final_alpha = np.array(
-                Image.fromarray(np.squeeze(pred_alpha)).resize(origin_shape)
+                Image.fromarray(np.squeeze(pred_alpha)).resize(origin_shape[::-1])
             )
 
             final_alpha = final_alpha.astype(np.float64) / np.max(final_alpha)
