@@ -73,9 +73,11 @@ def SPDeepMatting(context):
                             Image.fromarray(rgb_raw.astype(np.uint8)).resize(
                                 (
                                     bg_raw.shape[0],
-                                    rgb_raw.shape[1]
-                                    * bg_raw.shape[0]
-                                    / rgb_raw.shape[0],
+                                    int(
+                                        rgb_raw.shape[1]
+                                        * bg_raw.shape[0]
+                                        / rgb_raw.shape[0]
+                                    ),
                                 )
                             )
                         )
@@ -84,9 +86,11 @@ def SPDeepMatting(context):
                         else np.array(
                             Image.fromarray(rgb_raw.astype(np.uint8)).resize(
                                 (
-                                    rgb_raw.shape[0]
-                                    * bg_raw.shape[1]
-                                    / rgb_raw.shape[1],
+                                    int(
+                                        rgb_raw.shape[0]
+                                        * bg_raw.shape[1]
+                                        / rgb_raw.shape[1]
+                                    ),
                                     bg_raw.shape[1],
                                 )
                             )
@@ -97,9 +101,11 @@ def SPDeepMatting(context):
                             Image.fromarray(final_alpha.astype(np.uint8)).resize(
                                 (
                                     bg_raw.shape[0],
-                                    rgb_raw.shape[1]
-                                    * bg_raw.shape[0]
-                                    / rgb_raw.shape[0],
+                                    int(
+                                        rgb_raw.shape[1]
+                                        * bg_raw.shape[0]
+                                        / rgb_raw.shape[0]
+                                    ),
                                 )
                             )
                         )
@@ -108,9 +114,11 @@ def SPDeepMatting(context):
                         else np.array(
                             Image.fromarray(rgb_raw.astype(np.uint8)).resize(
                                 (
-                                    rgb_raw.shape[0]
-                                    * bg_raw.shape[1]
-                                    / rgb_raw.shape[1],
+                                    int(
+                                        rgb_raw.shape[0]
+                                        * bg_raw.shape[1]
+                                        / rgb_raw.shape[1]
+                                    ),
                                     bg_raw.shape[1],
                                 )
                             )
