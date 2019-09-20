@@ -64,6 +64,58 @@ def SPDeepMatting(context):
                 if os.path.splitext(bg_pth)[-1] not in [".png", ".jpg", ".jpeg"]:
                     continue
                 bg_raw = imageio.imread(bg_pth)
+                if (
+                    bg_raw.shape[0] < rgb_raw.shape[0]
+                    or bg_raw.shape[1] < rgb_raw.shape[1]
+                ):
+                    rgb_raw = (
+                        np.array(
+                            Image.fromarray(rgb_raw.astype(np.uint8)).resize(
+                                (
+                                    bg_raw.shape[0],
+                                    rgb_raw.shape[1]
+                                    * bg_raw.shape[0]
+                                    / rgb_raw.shape[0],
+                                )
+                            )
+                        )
+                        if bg_raw.shape[0] / rgb_raw.shape[0]
+                        < bg_raw.shape[1] / rgb_raw.shape[1]
+                        else np.array(
+                            Image.fromarray(rgb_raw.astype(np.uint8)).resize(
+                                (
+                                    rgb_raw.shape[0]
+                                    * bg_raw.shape[1]
+                                    / rgb_raw.shape[1],
+                                    bg_raw.shape[1],
+                                )
+                            )
+                        )
+                    )
+                    final_alpha = (
+                        np.array(
+                            Image.fromarray(final_alpha.astype(np.uint8)).resize(
+                                (
+                                    bg_raw.shape[0],
+                                    rgb_raw.shape[1]
+                                    * bg_raw.shape[0]
+                                    / rgb_raw.shape[0],
+                                )
+                            )
+                        )
+                        if bg_raw.shape[0] / rgb_raw.shape[0]
+                        < bg_raw.shape[1] / rgb_raw.shape[1]
+                        else np.array(
+                            Image.fromarray(rgb_raw.astype(np.uint8)).resize(
+                                (
+                                    rgb_raw.shape[0]
+                                    * bg_raw.shape[1]
+                                    / rgb_raw.shape[1],
+                                    bg_raw.shape[1],
+                                )
+                            )
+                        )
+                    )
                 im, bg = composite4(
                     rgb_raw, bg_raw, final_alpha, origin_shape[1], origin_shape[0]
                 )
