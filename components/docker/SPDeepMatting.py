@@ -124,6 +124,18 @@ def SPDeepMatting(context):
                             )
                         )
                     )
+                    origin_shape = (
+                        (
+                            bg_raw.shape[0],
+                            int(rgb_raw.shape[1] * bg_raw.shape[0] / rgb_raw.shape[0]),
+                        )
+                        if bg_raw.shape[0] / rgb_raw.shape[0]
+                        < bg_raw.shape[1] / rgb_raw.shape[1]
+                        else (
+                            int(rgb_raw.shape[0] * bg_raw.shape[1] / rgb_raw.shape[1]),
+                            bg_raw.shape[1],
+                        )
+                    )
                 im, bg = composite4(
                     rgb_raw, bg_raw, final_alpha, origin_shape[1], origin_shape[0]
                 )
