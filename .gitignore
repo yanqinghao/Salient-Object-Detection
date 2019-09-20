@@ -7,3 +7,4 @@ Pipfile
 .vscode/launch.json
 .vscode/settings.json
 salience_model
+*.pyc
